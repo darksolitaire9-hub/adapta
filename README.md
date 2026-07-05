@@ -3,7 +3,7 @@
 [![CI Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/darksolitaire9-hub/adapta/actions)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](LICENSE)
 [![No Std Compatible](https://img.shields.io/badge/no__std-compatible-orange.svg)](#architecture--no_std-guarantee)
-[![Version](https://img.shields.io/badge/version-0.0.1--alpha-blueviolet.svg)](#release-cycle--versioning-strategy)
+[![Version](https://img.shields.io/badge/version-0.0.2-blueviolet.svg)](#release-cycle--versioning-strategy)
 
 **Zero-latency, `#![no_std]` closed-loop adaptation kernel and Edgeworth higher-order retry tuner for distributed systems and agentic evaluation pipelines.**
 
