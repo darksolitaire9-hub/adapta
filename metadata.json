@@ -1,6 +1,6 @@
 {
   "name": "adapta",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "cs_isomorphism": "closed_loop_test_time_adaptation",
   "provenance": [
     {

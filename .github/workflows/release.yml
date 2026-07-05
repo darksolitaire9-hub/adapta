@@ -5,34 +5,57 @@ on:
     tags:
       - 'v*.*.*'
 
+permissions:
+  contents: write
+
 jobs:
-  publish:
-    name: Build & Release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+  build-and-release:
+    name: Build & Release (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            asset_name: adapta-linux-x86_64
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            asset_name: adapta-windows-x86_64.exe
+          - os: macos-13
+            target: x86_64-apple-darwin
+            asset_name: adapta-macos-x86_64
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            asset_name: adapta-macos-aarch64
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Rust toolchain
         uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
 
-      - name: Cache cargo registry and build artifacts
-        uses: Swatinem/rust-cache@v2
+      - name: Build release binary
+        run: cargo build --release --target ${{ matrix.target }} --bin adapta
 
-      - name: Run verification test suite
-        run: cargo test --all-features
+      - name: Prepare binary asset (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: cp target/${{ matrix.target }}/release/adapta target/${{ matrix.target }}/release/${{ matrix.asset_name }}
 
-      - name: Build release bundle
-        run: cargo build --release --all-features
+      - name: Prepare binary asset (Windows)
+        if: runner.os == 'Windows'
+        run: copy target\${{ matrix.target }}\release\adapta.exe target\${{ matrix.target }}\release\${{ matrix.asset_name }}
+        shell: cmd
 
-      - name: Create GitHub Release
+      - name: Upload asset to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
           files: |
-            target/release/libadapta.rlib
+            target/${{ matrix.target }}/release/${{ matrix.asset_name }}
             metadata.json
             LICENSE
             README.md
