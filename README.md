@@ -7,7 +7,7 @@
 
 **Zero-latency, `#![no_std]` closed-loop adaptation kernel and Edgeworth higher-order retry tuner for distributed systems and agentic evaluation pipelines.**
 
-Authored by **Chanak Karki** & the HOPE Team.  
+Authored by **Chanak Karki**.  
 Canonical Online Repository: [github.com/darksolitaire9-hub/adapta](https://github.com/darksolitaire9-hub/adapta)
 
 ---
@@ -124,7 +124,7 @@ The core operates on fixed-capacity circular buffers without heap allocation, ma
   $$\text{Timeout}_{\text{new}} = \text{Timeout}_{\text{base}} \times M$$
 
 ### 2. AdaJEPA Closed-Loop Test-Time Adaptation
-* **Reference**: HOPE Team & AdaJEPA Authors (2026), *"AdaJEPA: An Adaptive Latent World Model"*, arXiv:2606.32026 ([DOI/Link](https://arxiv.org/abs/2606.32026)).
+* **Reference**: Chanak Karki & AdaJEPA Authors (2026), *"AdaJEPA: An Adaptive Latent World Model"*, arXiv:2606.32026 ([DOI/Link](https://arxiv.org/abs/2606.32026)).
 * **Mechanism**: To prevent false-positive regression alarms under benign environmental shift, `AdaJepaCorrector` performs online 1-step gradient updates on evaluation baselines while enforcing a hard topological bound ($\Delta_{\max}$) against terminal invariant violations:
   $$\mu_{t+1} = \mu_t + \eta (L_t - \mu_t) \quad \text{if } |L_t - \mu_t| < \Delta_{\max}$$
 
@@ -148,7 +148,7 @@ To prevent LLM-generated numerical bugs, division-by-zero (`NaN`/`Inf`), or osci
 `adapta` follows Semantic Versioning (`SemVer 2.0.0`) backed by automated GitHub Actions CI/CD workflows:
 
 ### 1. Release Stages
-* **`v0.0.x` (Alpha / Dogfooding - Current)**: Focused on architectural verification, `#![no_std]` compliance, and internal dogfooding within HOPE (`rmcp` upstream pipelines and `bineval` regression loops).
+* **`v0.0.x` (Alpha / Dogfooding - Current)**: Focused on architectural verification, `#![no_std]` compliance, and internal dogfooding within production environments (`rmcp` upstream pipelines and `bineval` regression loops).
 * **`v0.1.x` (Beta / Feature Freeze)**: Public API stabilization, concurrency overhead benchmarking under high load, and Tower middleware trait graduation.
 * **`v1.0.0` (Production Release)**: Full stability guarantees, crates.io publication, and long-term support.
 
