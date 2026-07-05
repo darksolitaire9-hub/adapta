@@ -12,6 +12,43 @@ Canonical Online Repository: [github.com/darksolitaire9-hub/adapta](https://gith
 
 ---
 
+## Table of Contents
+- [Explain to Me Like I am a 5 Year Old (ELI5)](#explain-to-me-like-i-am-a-5-year-old-eli5)
+- [Why This Helps LLMs and Humans](#why-this-helps-llms-and-humans)
+- [Why adapta?](#why-adapta)
+- [Hexagonal Architecture (Ports & Adapters)](#hexagonal-architecture-ports--adapters)
+- [Theoretical Foundations & Academic References](#theoretical-foundations--academic-references)
+- [Quantitative Verification & Guardrails](#quantitative-verification--guardrails)
+- [Release Cycle & Versioning Strategy](#release-cycle--versioning-strategy)
+- [Security & Zero Data Leakage Guarantee](#security--zero-data-leakage-guarantee)
+- [Usage Example](#usage-example)
+- [License](#license)
+
+---
+
+## Explain to Me Like I am a 5 Year Old (ELI5)
+
+Imagine you are waiting for your friend to bring you a toy. Usually, they take **10 seconds**. 
+But sometimes, your friend gets distracted by a puppy on the sidewalk and takes **50 seconds**!
+
+If you get impatient and always walk away after 15 seconds, you will miss getting your toy whenever puppy days happen! But if you always wait 50 seconds every single time, you waste lots of time standing around when they aren't even distracted.
+
+**`adapta` is like a smart timer watch.** It watches how often your friend gets distracted by puppies. When it notices puppy days are happening, it automatically gives your friend a little bit of extra time. When things are quiet again, it goes back to normal. That way, you never walk away too early, but you also never waste time standing around!
+
+---
+
+## Why This Helps LLMs and Humans
+
+### For LLMs (Autonomous Coding Agents)
+- **Deterministic Math & Explicit Guardrails**: LLMs struggle with guessing statistical formulas or boundary conditions (like division-by-zero on zero variance). By explicitly tabulating exact mathematical invariants ($N \ge 15$, $\sigma^2 \ge 1\text{e-}12$, reference moments), LLMs can write evaluation loops and tests without hallucinating thresholds.
+- **Token-Efficient Retrieval**: The clear Table of Contents and modular Hexagonal Architecture allow agents to target specific domain ports or adapters during code generation without ingesting massive unorganized codebases.
+
+### For Humans (Systems Engineers & Reviewers)
+- **Zero-Cognitive-Load Integration**: Engineers do not need a PhD in option pricing or self-supervised learning to use `adapta`. They can plug `AdaptiveLayer` directly into their Tower/Tokio middleware stacks in 3 lines of code.
+- **Enterprise Patent Safety**: By providing dual licensing under MIT and Apache-2.0, legal teams get explicit patent retaliation protection while individual developers retain lightweight MIT freedom.
+
+---
+
 ## Why adapta?
 
 Standard distributed retry mechanisms and evaluation gates rely on static heuristics: fixed backoff schedules, Gaussian $(\mu + 2\sigma)$ tail assumptions, and static rejection thresholds. In real-world environments, network latency distributions are heavy-tailed and right-skewed, while LLM evaluation scores undergo benign drift over time.
