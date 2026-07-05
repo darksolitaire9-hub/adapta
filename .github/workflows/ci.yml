@@ -1,0 +1,37 @@
+name: Adapta CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test & Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Cache cargo registry and build artifacts
+        uses: Swatinem/rust-cache@v2
+
+      - name: Run formatting check
+        run: cargo fmt --all -- --check
+
+      - name: Run clippy lints
+        run: cargo clippy --all-features -- -D warnings
+
+      - name: Run proptest & unit tests (std + tower)
+        run: cargo test --all-features
+
+      - name: Verify no_std compatibility
+        run: cargo check --no-default-features

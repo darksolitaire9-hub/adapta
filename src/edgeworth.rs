@@ -64,7 +64,7 @@ impl EdgeworthBackoff {
         if m2 < 1e-12 {
             return None;
         }
-        
+
         #[cfg(feature = "std")]
         let (m2_pow_1_5, m2_sq) = (m2 * m2.sqrt(), m2 * m2);
 
@@ -72,7 +72,9 @@ impl EdgeworthBackoff {
         let (m2_pow_1_5, m2_sq) = {
             let mut s = m2;
             for _ in 0..15 {
-                if s == 0.0 { break; }
+                if s == 0.0 {
+                    break;
+                }
                 s = 0.5 * (s + m2 / s);
             }
             (m2 * s, m2 * m2)

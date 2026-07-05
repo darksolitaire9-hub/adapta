@@ -10,8 +10,13 @@ repository = "https://github.com/darksolitaire9-hub/adapta"
 [features]
 default = ["std"]
 std = []
+tower = ["std", "dep:tower-service", "dep:tower-layer", "dep:pin-project-lite"]
 
 [dependencies]
+tower-service = { version = "0.3", optional = true }
+tower-layer = { version = "0.3", optional = true }
+pin-project-lite = { version = "0.2", optional = true }
 
 [dev-dependencies]
 proptest = "1.5"
+tokio = { version = "1.36", features = ["rt", "macros", "time"] }

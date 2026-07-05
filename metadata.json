@@ -1,0 +1,43 @@
+{
+  "name": "adapta",
+  "version": "0.0.1",
+  "cs_isomorphism": "closed_loop_test_time_adaptation",
+  "provenance": [
+    {
+      "type": "paper",
+      "title": "AdaJEPA: An Adaptive Latent World Model",
+      "authors": ["HOPE Team", "AdaJEPA Authors"],
+      "venue": "arXiv",
+      "year": 2026,
+      "doi_or_url": "https://arxiv.org/abs/2606.32026"
+    },
+    {
+      "type": "paper",
+      "title": "Testing Option Pricing with the Edgeworth Expansion",
+      "authors": ["Corrado", "Su"],
+      "venue": "arXiv",
+      "year": 2004,
+      "doi_or_url": "https://arxiv.org/abs/0401192"
+    }
+  ],
+  "guardrails": {
+    "edgeworth_min_samples": 15,
+    "edgeworth_min_variance": 1e-12,
+    "adajepa_min_samples": 1
+  },
+  "reference_vector_moments": {
+    "mean": 16.2,
+    "variance": 113.62666667,
+    "skewness_g1": 2.21894643,
+    "kurtosis_g2": 4.00433476
+  },
+  "optimization_candidates": [
+    {
+      "origin_domain": "closed_loop_feedback_control",
+      "summary": "Replaces static retry thresholds and fixed backoff margins with online 1-step gradient adaptation and Edgeworth higher-order expansion.",
+      "math_reference": "M = 1.0 + c_skew * max(0, g1) + c_kurt * max(0, g2)",
+      "tuning_heuristics": ["Enforce N>=15 before higher-order expansion"],
+      "constraints": ["Zero-latency in-process tower::Layer with no_std circular buffer"]
+    }
+  ]
+}
