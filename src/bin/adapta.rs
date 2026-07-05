@@ -36,10 +36,16 @@ fn main() {
             let count = tuner.sample_count();
             match tuner.adapt() {
                 Some(adjusted) => {
-                    println!("count={} mean={:.2} adjusted_timeout_ms={:.2}", count, mean, adjusted);
+                    println!(
+                        "count={} mean={:.2} adjusted_timeout_ms={:.2}",
+                        count, mean, adjusted
+                    );
                 }
                 None => {
-                    println!("count={} mean={:.2} adjusted_timeout_ms={:.2} (guardrail fallback)", count, mean, base_ms);
+                    println!(
+                        "count={} mean={:.2} adjusted_timeout_ms={:.2} (guardrail fallback)",
+                        count, mean, base_ms
+                    );
                 }
             }
         }
@@ -55,7 +61,10 @@ fn main() {
             let mut corrector = AdaJepaCorrector::new(initial, eta);
             corrector.observe(target);
             if let Some(new_base) = corrector.adapt() {
-                println!("initial={:.2} target={:.2} new_baseline={:.2}", initial, target, new_base);
+                println!(
+                    "initial={:.2} target={:.2} new_baseline={:.2}",
+                    initial, target, new_base
+                );
             }
         }
         _ => {
