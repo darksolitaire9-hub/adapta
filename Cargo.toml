@@ -1,0 +1,17 @@
+[package]
+name = "adapta"
+version = "0.0.1"
+edition = "2021"
+authors = ["HOPE Team"]
+description = "Zero-latency, no_std closed-loop adaptation kernel and Edgeworth higher-order retry tuner"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/darksolitaire9-hub/adapta"
+
+[features]
+default = ["std"]
+std = []
+
+[dependencies]
+
+[dev-dependencies]
+proptest = "1.5"
