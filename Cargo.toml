@@ -2,7 +2,7 @@
 name = "adapta"
 version = "0.0.1"
 edition = "2021"
-authors = ["HOPE Team"]
+authors = ["Chanak Karki"]
 description = "Zero-latency, no_std closed-loop adaptation kernel and Edgeworth higher-order retry tuner"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/darksolitaire9-hub/adapta"
